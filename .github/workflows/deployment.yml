@@ -47,7 +47,8 @@ jobs:
           host: 210.79.190.107
           username: niuniu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: cd live/
+          script: |
+            cd live/
             git pull
             docker compose build
             docker compose down
