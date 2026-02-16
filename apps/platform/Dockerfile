@@ -10,8 +10,6 @@ COPY packages/ui/package.json ./packages/ui/
 
 RUN pnpm install
 
-RUN pnpm --filter @day-16/ui build
-
 COPY . .
 
 WORKDIR /app/apps/platform
