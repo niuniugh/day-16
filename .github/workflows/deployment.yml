@@ -42,4 +42,13 @@ jobs:
         run: pnpm lint
 
       - name: Deploy to server
-        run: echo "Deploying to server [MOCK]"
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 210.79.190.107
+          username: niuniu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: cd live/
+            git pull
+            docker compose build
+            docker compose down
+            docker compose up -d
