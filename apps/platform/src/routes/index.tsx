@@ -1,7 +1,12 @@
+import { Button } from "@day-16/ui";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
-	return <div>Hello Platform!</div>;
+	return (
+		<div>
+			<Button label="Click me" />
+		</div>
+	);
 }
