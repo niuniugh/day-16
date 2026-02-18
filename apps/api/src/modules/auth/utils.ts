@@ -7,5 +7,5 @@ export async function hashPassword(password: string) {
 }
 
 export function comparePassword(password: string, hashedPassword: string) {
-    return bcrypt.compare(password, hashedPassword);
+	return bcrypt.compare(password, hashedPassword);
 }
