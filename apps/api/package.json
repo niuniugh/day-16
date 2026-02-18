@@ -3,7 +3,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "pnpm with-env tsx watch src/index.ts",
-		"build": "tsc",
+		"build": "tsup src/index.ts --format esm --out-dir dist",
 		"start": "node dist/index.js",
 		"with-env": "dotenv -e ../../.env --",
 		"db:migrate": "pnpm prisma migrate dev",
@@ -15,10 +15,13 @@
 		"@prisma/client": "^7.4.0",
 		"dotenv": "^17.3.1",
 		"hono": "^4.11.9",
-		"prisma": "^7.4.0"
+		"pdf-lib": "^1.17.1",
+		"prisma": "^7.4.0",
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.17",
+		"tsup": "^8.5.1",
 		"tsx": "^4.7.1",
 		"typescript": "^5.8.3"
 	}

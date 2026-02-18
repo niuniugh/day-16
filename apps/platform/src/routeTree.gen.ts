@@ -8,61 +8,79 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as IndexRouteImport } from "./routes/index";
+import { Route as CvDownloadResumeIdRouteImport } from "./routes/download/$resumeId.tsx";
 
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
+const CvDownloadResumeIdRoute = CvDownloadResumeIdRouteImport.update({
+  id: "/cv/download/$resumeId",
+  path: "/cv/download/$resumeId",
+  getParentRoute: () => rootRouteImport,
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  "/": typeof IndexRoute;
+  "/cv/download/$resumeId": typeof CvDownloadResumeIdRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  "/": typeof IndexRoute;
+  "/cv/download/$resumeId": typeof CvDownloadResumeIdRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  __root__: typeof rootRouteImport;
+  "/": typeof IndexRoute;
+  "/cv/download/$resumeId": typeof CvDownloadResumeIdRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "/cv/download/$resumeId";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/cv/download/$resumeId";
+  id: "__root__" | "/" | "/cv/download/$resumeId";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  IndexRoute: typeof IndexRoute;
+  CvDownloadResumeIdRoute: typeof CvDownloadResumeIdRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/cv/download/$resumeId": {
+      id: "/cv/download/$resumeId";
+      path: "/cv/download/$resumeId";
+      fullPath: "/cv/download/$resumeId";
+      preLoaderRoute: typeof CvDownloadResumeIdRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-}
+  CvDownloadResumeIdRoute: CvDownloadResumeIdRoute,
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
+import type { getRouter } from "./router.tsx";
+import type { createStart } from "@tanstack/react-start";
+declare module "@tanstack/react-start" {
   interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
+    ssr: true;
+    router: Awaited<ReturnType<typeof getRouter>>;
   }
 }
