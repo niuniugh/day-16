@@ -1,22 +1,26 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { exportRoute } from "./export/route";
+import { authRouter } from "./modules/auth/route";
 
-const app = new Hono()
-	.use(
-		cors({
-			origin: "http://localhost:3000",
-		}),
-	)
-	.get("/", (c) => {
-		return c.text("Hello Hono!");
-	})
-	.route("/export", exportRoute);
+const app = new Hono();
+
+app.use(
+	"*",
+	cors({
+		origin: "http://localhost:3000",
+		allowMethods: ["GET", "POST", "PUT", "DELETE"],
+		allowHeaders: ["Content-Type"],
+	}),
+);
+
+const appWithRoutes = app.route("/auth", authRouter);
+
+export type AppType = typeof appWithRoutes;
 
 serve(
 	{
-		fetch: app.fetch,
+		fetch: appWithRoutes.fetch,
 		port: 8000,
 	},
 	(info) => {

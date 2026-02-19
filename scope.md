@@ -1,4 +1,4 @@
-git s👤 MEMBER 1 — AUTH & USER MANAGEMENT
+👤 MEMBER 1 — AUTH & USER MANAGEMENT
 🔥 Scope Milik Dia
 Database
 

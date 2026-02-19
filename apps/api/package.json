@@ -11,15 +11,20 @@
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.19.9",
+		"@hono/zod-validator": "^0.7.6",
 		"@prisma/adapter-pg": "^7.4.0",
 		"@prisma/client": "^7.4.0",
+		"@types/bcrypt": "^6.0.0",
+		"bcrypt": "^6.0.0",
 		"dotenv": "^17.3.1",
 		"hono": "^4.11.9",
-		"pdf-lib": "^1.17.1",
+		"jsonwebtoken": "^9.0.3",
+		"jwt": "^0.2.0",
 		"prisma": "^7.4.0",
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
+		"@types/jsonwebtoken": "^9.0.10",
 		"@types/node": "^20.11.17",
 		"tsup": "^8.5.1",
 		"tsx": "^4.7.1",
