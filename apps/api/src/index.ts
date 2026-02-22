@@ -2,6 +2,7 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { authRouter } from "./modules/auth/route";
+import { resumeRouter } from "./modules/resumes/route";
 
 const app = new Hono();
 
@@ -14,7 +15,9 @@ app.use(
 	}),
 );
 
-const appWithRoutes = app.route("/auth", authRouter);
+const appWithRoutes = app
+	.route("/auth", authRouter)
+	.route("/resumes", resumeRouter);
 
 export type AppType = typeof appWithRoutes;
 
