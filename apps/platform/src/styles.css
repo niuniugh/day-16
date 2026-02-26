@@ -136,3 +136,9 @@ code {
 		@apply bg-background text-foreground;
 	}
 }
+
+@layer components {
+	button {
+		@apply bg-gray-800 disabled:bg-gray-300 hover:bg-gray-700 rounded-md text-white text-sm font-medium py-2 transition;
+	}
+}
